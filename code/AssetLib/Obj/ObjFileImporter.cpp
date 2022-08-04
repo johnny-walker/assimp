@@ -598,6 +598,7 @@ void ObjFileImporter::createMaterials(const ObjFile::Model *pModel, aiScene *pSc
         case 2:
             sm = aiShadingMode_Phong;
             break;
+        // todo, support other illums
         default:
             sm = aiShadingMode_Gouraud;
             ASSIMP_LOG_ERROR("OBJ: unexpected illumination model (0-2 recognized)");
@@ -754,6 +755,33 @@ void ObjFileImporter::createMaterials(const ObjFile::Model *pModel, aiScene *pSc
             mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_UNKNOWN, 0 );
             if (pCurrentMaterial->clamp[ObjFile::Material::TextureRMAType]) {
                 addTextureMappingModeProperty(mat, aiTextureType_UNKNOWN);
+            }
+        }
+
+        //custom map
+        if (0 != pCurrentMaterial->textureORM.length) {
+            mat->AddProperty(&pCurrentMaterial->textureORM, _AI_MATKEY_TEXTURE_BASE, aiTextureType_ORM, 0);
+            mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_ORM, 0);
+            if (pCurrentMaterial->clamp[ObjFile::Material::TextureORMType]) {
+                addTextureMappingModeProperty(mat, aiTextureType_ORM);
+            }
+        }
+
+        //custom map
+        if (0 != pCurrentMaterial->textureTransmission.length) {
+            mat->AddProperty(&pCurrentMaterial->textureTransmission, _AI_MATKEY_TEXTURE_BASE, aiTextureType_TRANSMISSION, 0);
+            mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_TRANSMISSION, 0);
+            if (pCurrentMaterial->clamp[ObjFile::Material::TextureTransmissionType]) {
+                addTextureMappingModeProperty(mat, aiTextureType_TRANSMISSION);
+            }
+        }
+
+        //custom map
+        if (0 != pCurrentMaterial->textureEnvironment.length) {
+            mat->AddProperty(&pCurrentMaterial->textureEnvironment, _AI_MATKEY_TEXTURE_BASE, aiTextureType_ENVIRONMENT, 0);
+            mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_ENVIRONMENT, 0);
+            if (pCurrentMaterial->clamp[ObjFile::Material::TextureEnvironmentType]) {
+                addTextureMappingModeProperty(mat, aiTextureType_ENVIRONMENT);
             }
         }
 

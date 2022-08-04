@@ -138,6 +138,9 @@ struct Material {
     aiString textureMetallic;
     aiString textureSheen;
     aiString textureRMA;
+    aiString textureORM;            // custom map
+    aiString textureTransmission;   // custom map   
+    aiString textureEnvironment;    // custom map
 
     enum TextureType {
         TextureDiffuseType = 0,
@@ -160,6 +163,9 @@ struct Material {
         TextureMetallicType,
         TextureSheenType,
         TextureRMAType,
+        TextureORMType,             // custom type
+        TextureTransmissionType,    // custom type
+        TextureEnvironmentType,     // custom type
         TextureTypeCount
     };
     bool clamp[TextureTypeCount];

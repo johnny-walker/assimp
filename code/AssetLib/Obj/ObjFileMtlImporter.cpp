@@ -71,6 +71,10 @@ static const std::string RoughnessTexture = "map_Pr";
 static const std::string MetallicTexture = "map_Pm";
 static const std::string SheenTexture = "map_Ps";
 static const std::string RMATexture = "map_Ps";
+static const std::string ORMTexture = "map_orm";            //custom tag (orm)
+static const std::string NormalTextureV3 = "map_normal";    //custom tag (normal)
+static const std::string TransmissionTexture = "map_Tf";    //custom tag (transmission)
+static const std::string EnvironmentTexture = "map_Ev";     //custom tag (environment)
 
 // texture option specific token
 static const std::string BlendUOption = "-blendu";
@@ -400,7 +404,9 @@ void ObjFileMtlImporter::getTexture() {
         // Bump texture
         out = &m_pModel->m_pCurrentMaterial->textureBump;
         clampIndex = ObjFile::Material::TextureBumpType;
-    } else if (!ASSIMP_strincmp(pPtr, NormalTextureV1.c_str(), static_cast<unsigned int>(NormalTextureV1.size())) || !ASSIMP_strincmp(pPtr, NormalTextureV2.c_str(), static_cast<unsigned int>(NormalTextureV2.size()))) {
+    } else if (!ASSIMP_strincmp(pPtr, NormalTextureV1.c_str(), static_cast<unsigned int>(NormalTextureV1.size())) ||
+               !ASSIMP_strincmp(pPtr, NormalTextureV2.c_str(), static_cast<unsigned int>(NormalTextureV2.size())) ||
+               !ASSIMP_strincmp(pPtr, NormalTextureV3.c_str(), static_cast<unsigned int>(NormalTextureV3.size())) ) {
         // Normal map
         out = &m_pModel->m_pCurrentMaterial->textureNormal;
         clampIndex = ObjFile::Material::TextureNormalType;
@@ -424,10 +430,22 @@ void ObjFileMtlImporter::getTexture() {
         // PBR Sheen (reflectance) texture
         out = & m_pModel->m_pCurrentMaterial->textureSheen;
         clampIndex = ObjFile::Material::TextureSheenType;
-    } else if (!ASSIMP_strincmp( pPtr, RMATexture.c_str(), static_cast<unsigned int>(RMATexture.size()))) {
+    } else if (!ASSIMP_strincmp(pPtr, RMATexture.c_str(), static_cast<unsigned int>(RMATexture.size()))) {
         // PBR Rough/Metal/AO texture
-        out = & m_pModel->m_pCurrentMaterial->textureRMA;
+        out = &m_pModel->m_pCurrentMaterial->textureRMA;
         clampIndex = ObjFile::Material::TextureRMAType;
+    } else if (!ASSIMP_strincmp(pPtr, ORMTexture.c_str(), static_cast<unsigned int>(ORMTexture.size()))) {
+        // PBR AO/Rough/Metal texture
+        out = & m_pModel->m_pCurrentMaterial->textureORM;
+        clampIndex = ObjFile::Material::TextureORMType;
+    } else if (!ASSIMP_strincmp(pPtr, TransmissionTexture.c_str(), static_cast<unsigned int>(TransmissionTexture.size()))) {
+        // PBR Transmission texture
+        out = &m_pModel->m_pCurrentMaterial->textureTransmission;
+        clampIndex = ObjFile::Material::TextureTransmissionType;
+    } else if (!ASSIMP_strincmp(pPtr, EnvironmentTexture.c_str(), static_cast<unsigned int>(EnvironmentTexture.size()))) {
+        // PBR Environment texture
+        out = &m_pModel->m_pCurrentMaterial->textureEnvironment;
+        clampIndex = ObjFile::Material::TextureEnvironmentType;
     } else {
         ASSIMP_LOG_ERROR("OBJ/MTL: Encountered unknown texture type");
         return;

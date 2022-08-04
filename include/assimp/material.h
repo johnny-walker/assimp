@@ -303,20 +303,30 @@ enum aiTextureType {
     * eg velvet
     * https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_sheen
     */
-    aiTextureType_SHEEN = 19,
+    aiTextureType_SHEEN = 18,
 
     /** Clearcoat
     * Simulates a layer of 'polish' or 'laquer' layered on top of a PBR substrate
     * https://autodesk.github.io/standard-surface/#closures/coating
     * https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_clearcoat
     */
-    aiTextureType_CLEARCOAT = 20,
+    aiTextureType_CLEARCOAT = 19,
 
     /** Transmission
     * Simulates transmission through the surface
     * May include further information such as wall thickness
     */
-    aiTextureType_TRANSMISSION = 21,
+    aiTextureType_TRANSMISSION = 20,
+
+    /** (custom) ORM texture
+    * combination of occlusion, roughness, metallicness
+    */
+    aiTextureType_ORM = 21,
+
+    /** (custom) Environment texture
+    * ibl environment texture
+    */
+    aiTextureType_ENVIRONMENT = 22,
 
     /** Unknown texture
      *
@@ -324,7 +334,7 @@ enum aiTextureType {
      *  above is considered to be 'unknown'. It is still imported,
      *  but is excluded from any further post-processing.
     */
-    aiTextureType_UNKNOWN = 18,
+    aiTextureType_UNKNOWN = 23,
 
 #ifndef SWIG
     _aiTextureType_Force32Bit = INT_MAX
