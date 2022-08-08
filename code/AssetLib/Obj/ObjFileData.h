@@ -136,6 +136,7 @@ struct Material {
     aiString textureDisp;
     aiString textureRoughness;
     aiString textureMetallic;
+    aiString textureAO;
     aiString textureSheen;
     aiString textureRMA;
     aiString textureORM;            // custom map
@@ -161,6 +162,7 @@ struct Material {
         TextureDispType,
         TextureRoughnessType,
         TextureMetallicType,
+        TextureAOType,
         TextureSheenType,
         TextureRMAType,
         TextureORMType,             // custom type

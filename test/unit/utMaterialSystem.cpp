@@ -258,7 +258,7 @@ TEST_F(MaterialSystemTest, testMaterialTextureTypeEnum) {
         case aiTextureType_NORMAL_CAMERA:
         case aiTextureType_EMISSION_COLOR:
         case aiTextureType_METALNESS:
-        case aiTextureType_DIFFUSE_ROUGHNESS:
+        case aiTextureType_ROUGHNESS:
         case aiTextureType_AMBIENT_OCCLUSION:
         case aiTextureType_SHEEN:
         case aiTextureType_CLEARCOAT:

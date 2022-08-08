@@ -80,8 +80,8 @@ const char *aiTextureTypeToString(aiTextureType in) {
         return "EmissionColor";
     case aiTextureType_METALNESS:
         return "Metalness";
-    case aiTextureType_DIFFUSE_ROUGHNESS:
-        return "DiffuseRoughness";
+    case aiTextureType_ROUGHNESS:
+        return "Roughness";
     case aiTextureType_AMBIENT_OCCLUSION:
         return "AmbientOcclusion";
     case aiTextureType_SHEEN:

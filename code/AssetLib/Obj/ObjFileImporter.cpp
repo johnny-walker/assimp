@@ -726,10 +726,10 @@ void ObjFileImporter::createMaterials(const ObjFile::Model *pModel, aiScene *pSc
         }
 
         if (0 != pCurrentMaterial->textureRoughness.length) {
-            mat->AddProperty(&pCurrentMaterial->textureRoughness, _AI_MATKEY_TEXTURE_BASE, aiTextureType_DIFFUSE_ROUGHNESS, 0);
-            mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_DIFFUSE_ROUGHNESS, 0 );
+            mat->AddProperty(&pCurrentMaterial->textureRoughness, _AI_MATKEY_TEXTURE_BASE, aiTextureType_ROUGHNESS, 0);
+            mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_ROUGHNESS, 0 );
             if (pCurrentMaterial->clamp[ObjFile::Material::TextureRoughnessType]) {
-                addTextureMappingModeProperty(mat, aiTextureType_DIFFUSE_ROUGHNESS);
+                addTextureMappingModeProperty(mat, aiTextureType_ROUGHNESS);
             }
         }
 
@@ -738,6 +738,14 @@ void ObjFileImporter::createMaterials(const ObjFile::Model *pModel, aiScene *pSc
             mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_METALNESS, 0 );
             if (pCurrentMaterial->clamp[ObjFile::Material::TextureMetallicType]) {
                 addTextureMappingModeProperty(mat, aiTextureType_METALNESS);
+            }
+        }
+
+        if (0 != pCurrentMaterial->textureAO.length) {
+            mat->AddProperty(&pCurrentMaterial->textureAO, _AI_MATKEY_TEXTURE_BASE, aiTextureType_AMBIENT_OCCLUSION, 0);
+            mat->AddProperty(&uvwIndex, 1, _AI_MATKEY_UVWSRC_BASE, aiTextureType_AMBIENT_OCCLUSION, 0);
+            if (pCurrentMaterial->clamp[ObjFile::Material::TextureAOType]) {
+                addTextureMappingModeProperty(mat, aiTextureType_AMBIENT_OCCLUSION);
             }
         }
 

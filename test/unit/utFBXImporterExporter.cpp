@@ -335,7 +335,7 @@ TEST_F(utFBXImporterExporter, importMaxPbrMaterialsMetalRoughness) {
     EXPECT_EQ(texture, aiString("Textures\\emission.png"));
     ASSERT_EQ(mat->Get(AI_MATKEY_TEXTURE(aiTextureType_NORMAL_CAMERA, 0), texture), AI_SUCCESS);
     EXPECT_EQ(texture, aiString("Textures\\normal.png"));
-    ASSERT_EQ(mat->Get(AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE_ROUGHNESS, 0), texture), AI_SUCCESS);
+    ASSERT_EQ(mat->Get(AI_MATKEY_TEXTURE(aiTextureType_ROUGHNESS, 0), texture), AI_SUCCESS);
     EXPECT_EQ(texture, aiString("Textures\\roughness.png"));
     ASSERT_EQ(mat->Get(AI_MATKEY_TEXTURE(aiTextureType_AMBIENT_OCCLUSION, 0), texture), AI_SUCCESS);
     EXPECT_EQ(texture, aiString("Textures\\occlusion.png"));

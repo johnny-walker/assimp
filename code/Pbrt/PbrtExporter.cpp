@@ -474,7 +474,7 @@ void PbrtExporter::WriteTextures() {
                     aiTextureType(tt) == aiTextureType_HEIGHT ||
                     aiTextureType(tt) == aiTextureType_DISPLACEMENT ||
                     aiTextureType(tt) == aiTextureType_METALNESS ||
-                    aiTextureType(tt) == aiTextureType_DIFFUSE_ROUGHNESS) {
+                    aiTextureType(tt) == aiTextureType_ROUGHNESS) {
                     texType = "float";
                     texName = std::string("float:") + RemoveSuffix(filename);
 

@@ -69,6 +69,7 @@ static const std::string DisplacementTexture2 = "disp";
 static const std::string SpecularityTexture = "map_ns";
 static const std::string RoughnessTexture = "map_Pr";
 static const std::string MetallicTexture = "map_Pm";
+static const std::string AOTexture = "map_ao";
 static const std::string SheenTexture = "map_Ps";
 static const std::string RMATexture = "map_Ps";
 static const std::string ORMTexture = "map_orm";            //custom tag (orm)
@@ -426,7 +427,11 @@ void ObjFileMtlImporter::getTexture() {
         // PBR Metallic texture
         out = & m_pModel->m_pCurrentMaterial->textureMetallic;
         clampIndex = ObjFile::Material::TextureMetallicType;
-    } else if (!ASSIMP_strincmp( pPtr, SheenTexture.c_str(), static_cast<unsigned int>(SheenTexture.size()))) {
+    } else if (!ASSIMP_strincmp(pPtr, AOTexture.c_str(), static_cast<unsigned int>(AOTexture.size()))) {
+        // PBR AO texture
+        out = &m_pModel->m_pCurrentMaterial->textureAO;
+        clampIndex = ObjFile::Material::TextureAOType;
+    } else if (!ASSIMP_strincmp(pPtr, SheenTexture.c_str(), static_cast<unsigned int>(SheenTexture.size()))) {
         // PBR Sheen (reflectance) texture
         out = & m_pModel->m_pCurrentMaterial->textureSheen;
         clampIndex = ObjFile::Material::TextureSheenType;

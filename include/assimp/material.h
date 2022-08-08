@@ -289,7 +289,7 @@ enum aiTextureType {
     aiTextureType_NORMAL_CAMERA = 13,
     aiTextureType_EMISSION_COLOR = 14,
     aiTextureType_METALNESS = 15,
-    aiTextureType_DIFFUSE_ROUGHNESS = 16,
+    aiTextureType_ROUGHNESS = 16,
     aiTextureType_AMBIENT_OCCLUSION = 17,
 
     /** PBR Material Modifiers
